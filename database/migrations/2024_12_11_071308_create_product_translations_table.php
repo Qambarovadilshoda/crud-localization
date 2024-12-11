@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
 
-            $table->unique(['post_id', 'locale']);
+            $table->unique(['product_id', 'locale']);
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
