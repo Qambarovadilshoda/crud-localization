@@ -45,5 +45,5 @@ abstract class Controller
             'message' => $message,
         ], $status);
     }
-   
+
 }
