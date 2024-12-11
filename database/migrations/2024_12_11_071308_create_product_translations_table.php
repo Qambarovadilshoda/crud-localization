@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('product_translations', function (Blueprint $table) {
             $table->id();
+            $table->integer('product_id')->unsigned();
+            $table->string('locale')->index();
+            $table->string('name');
+            $table->text('description');
+
+            $table->unique(['post_id', 'locale']);
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
