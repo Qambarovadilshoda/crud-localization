@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 abstract class Controller
 {
-    protected function success($data = [], string $message = 'Operation successful', int $status = 200)
+    protected function success($data = [], string $message = null, int $status = 200)
     {
+        $message = $message ?: __('success.operation');
         return response()->json([
             'status' => __('success.status'),
             'message' => $message,
             'data' => $data,
         ], $status);
     }
-    protected function responsePagination($paginator, $data = [], string $message = 'Operation successful', int $status = 200)
+    protected function responsePagination($paginator, $data = [], string $message = null, int $status = 200)
     {
         if ($paginator instanceof \Illuminate\Pagination\LengthAwarePaginator) {
             $pagination = [
@@ -30,7 +31,7 @@ abstract class Controller
         } else {
             $pagination = null;
         }
-
+        $message = $message ?: __('success.operation');
         return response()->json([
             'status' => __('success.status'),
             'message' => $message,
@@ -38,8 +39,10 @@ abstract class Controller
             'pagination' => $pagination,
         ], $status);
     }
-    protected function error(string $message = 'An error occurred', int $status = 400)
+    protected function error(string $message = null, int $status = 400)
     {
+        $message = $message ?: __('error.operation');
+
         return response()->json([
             'status' => __('error.status'),
             'message' => $message,
