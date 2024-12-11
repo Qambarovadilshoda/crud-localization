@@ -23,10 +23,16 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'price' => 'required|numeric|min:0.01|max:999999.99',
+
+            //uz validation
             'translations.uz.name' => 'required|sometimes|string|min:3',
             'translations.uz.description' => 'required|sometimes|string|max:225',
+
+            //en validation
             'translation.en.name' => 'required|sometimes|string|min:3',
             'translations.en.description' => 'required|sometimes|string|max:225',
+            
+            //ru validation
             'translation.ru.name' => 'required|sometimes|string|min:3',
             'translations.ru.description' => 'required|sometimes|string|max:225',
 
