@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
@@ -15,6 +16,14 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return $this->success([], __( 'success.created'), 201);
+        return $this->success($user, __( 'success.created'), 201);
+    }
+    public function login(LoginRequest $request){
+        $user = User::where('email', $request->email)->first();
+        if(!$user){
+            return $this->error(__('error.no'), 404);
+        }
+        $token = $user->createToken('login')->plainTextToken;
+        return $this->success($token, __('success.logged'));
     }
 }
