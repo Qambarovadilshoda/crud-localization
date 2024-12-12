@@ -3,5 +3,6 @@
     return [
         'no' => 'Not found',
         'status' => 'Error',
-        'operation' => 'An error occured'
+        'operation' => 'An error occured',
+        'forbidden' => 'This product is not yours'
     ];

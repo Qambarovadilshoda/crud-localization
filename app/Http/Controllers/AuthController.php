@@ -17,13 +17,10 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return $this->success(new UserResource($user), __( 'success.created'), 201);
+        return $this->success(new UserResource($user), 201);
     }
     public function login(LoginRequest $request){
-        $user = User::where('email', $request->email)->first();
-        if(!$user){
-            return $this->error(__('error.no'), 404);
-        }
+        $user = User::where('email', $request->email)->firstOrFail();
         $token = $user->createToken('login')->plainTextToken;
         return $this->success($token, __('success.logged'));
     }
@@ -31,7 +28,7 @@ class AuthController extends Controller
         return $this->success(new UserResource($request->user()));
     }
     public function logout(Request $request){
-        $request->user()->tokens()->delete();
+        $request->user()->currentAccessToken()->delete();
         return $this->success([], __('success.logged_out'), 204);
     }
 }

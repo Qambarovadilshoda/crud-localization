@@ -10,28 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    protected function prepareTranslations(array $translations, array $columns): array
-    {
-        $preparedTranslations = [];
 
-        foreach ($translations as $translation) {
-            foreach ($translation as $lang => $value) {
-                if (!isset($preparedTranslations[$lang])) {
-                    $preparedTranslations[$lang] = [];
-                }
-
-                foreach ($columns as $column) {
-                    if (isset($value[$column])) {
-                        $preparedTranslations[$lang][$column] = $value[$column];
-                    } else {
-                        info("{$column} not set for language: $lang");
-                    }
-                }
-            }
-        }
-
-        return $preparedTranslations;
-    }
     public function index()
     {
         $products = Product::with('user')->paginate(10);
@@ -52,17 +31,14 @@ class ProductController extends Controller
 
     public function show(string $id)
     {
-        $product = Product::with('user')->find($id);
-        if (!$product) {
-            return $this->error(__('error.no'), 404);
-        }
+        $product = Product::with('user')->findOrFail($id);
         return $this->success(new ProductResource($product->load('translations')));
     }
     public function update(UpdateProductRequest $request, string $id)
     {
-        $product = Product::find($id);
-        if (!$product) {
-            return $this->error(__('error.no'), 404);
+        $product = Product::findOrFail($id);
+        if(Auth::id() !== $product->user_id){
+            return $this->error(__('error.forbidden'), 403);
         }
         $product->price = $request->price;
         $translations = $this->prepareTranslations($request->translations, ['name', 'description']);
@@ -72,11 +48,10 @@ class ProductController extends Controller
     }
     public function destroy(string $id)
     {
-        $product = Product::find($id);
-        if (!$product) {
-            return $this->error(__('error.no'), 404);
+        $product = Product::findOrFail($id);
+        if(Auth::id() !== $product->user_id){
+            return $this->error(__('error.forbidden'), 403);
         }
-        $product->deleteTranslations();
         $product->delete();
         return $this->success([],__('success.deleted'), 204);
     }
