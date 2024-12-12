@@ -17,18 +17,18 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return $this->success(new UserResource($user), 'success.user-created', 201);
+        return $this->success(new UserResource($user), __('success.user.created'), 201);
     }
     public function login(LoginRequest $request){
         $user = User::where('email', $request->email)->firstOrFail();
         $token = $user->createToken('login')->plainTextToken;
-        return $this->success($token, __('success.user-logged'));
+        return $this->success($token, __('success.user.logged'));
     }
     public function getUser(Request $request){
         return $this->success(new UserResource($request->user()));
     }
     public function logout(Request $request){
         $request->user()->currentAccessToken()->delete();
-        return $this->success([], __('success.user-logged_out'), 204);
+        return $this->success([], __('success.user.logged_out'), 204);
     }
 }
