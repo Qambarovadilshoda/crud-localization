@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'created' => 'Mahsulot muvaffaqiyatli yaratildi!',
+    'product-created' => 'Mahsulot muvaffaqiyatli yaratildi!',
     'status' => 'Muvaffaqiyatli',
-    'logged' => 'Tizimga muvaffaqiyatli kirildi!',
+    'user-logged' => 'Foydalanuvchi tizimga muvaffaqiyatli kirdi!',
     'operation' => 'Operatsiya muvaffaqiyatli bajarildi!',
-    'logged_out' => 'Tizimdan muvaffaqiyatli chiqildi!',
-    'updated' => 'Mahsulot muvaffaqiyatli yangilandi!',
-    'deleted' => "Mahsulot muvaffaqiyatli o'chirildi",
+    'user-logged_out' => 'Foydalanuvchi tizimdan muvaffaqiyatli chiqdi!',
+    'product-updated' => 'Mahsulot muvaffaqiyatli yangilandi!',
+    'product-deleted' => "Mahsulot muvaffaqiyatli o'chirildi",
 ];

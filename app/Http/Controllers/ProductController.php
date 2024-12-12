@@ -26,7 +26,7 @@ class ProductController extends Controller
         $translations = $this->prepareTranslations($request->translations, ['name', 'description']);
         $product->fill($translations);
         $product->save();
-        return $this->success(new ProductResource($product->load('translations')), __('success.created'));
+        return $this->success(new ProductResource($product->load('translations')), __('success.product-created'));
     }
 
     public function show(string $id)
@@ -38,21 +38,21 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         if(Auth::id() !== $product->user_id){
-            return $this->error(__('error.forbidden'), 403);
+            return $this->error(__('error.product-forbidden'), 403);
         }
         $product->price = $request->price;
         $translations = $this->prepareTranslations($request->translations, ['name', 'description']);
         $product->fill($translations);
         $product->save();
-        return $this->success(new ProductResource($product->load('translations')), __('success.updated'));
+        return $this->success(new ProductResource($product->load('translations')), __('success.product-updated'));
     }
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);
         if(Auth::id() !== $product->user_id){
-            return $this->error(__('error.forbidden'), 403);
+            return $this->error(__('error.product-forbidden'), 403);
         }
         $product->delete();
-        return $this->success([],__('success.deleted'), 204);
+        return $this->success([],__('success.product-deleted'), 204);
     }
 }

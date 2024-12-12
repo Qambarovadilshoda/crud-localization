@@ -4,5 +4,5 @@
         'no' => 'Not found',
         'status' => 'Error',
         'operation' => 'An error occured',
-        'forbidden' => 'This product is not yours'
+        'product-forbidden' => 'This product is not yours'
     ];

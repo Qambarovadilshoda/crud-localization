@@ -1,13 +1,14 @@
 <?php
 
     return [
-        'created' => 'Product created successfully!',
+        'user-created' => 'User created successfully!',
+        'product-created' => 'Product created successfully!',
         'status' => 'Success!',
-        'logged' => 'Successfully logged in',
-        'operation' => 'Operation successfully',
-        'logged_out' => 'Successfully logged out',
-        'updated' => 'Product updated successfully!',
-        'deleted' => 'Product deleted successfully!',
+        'user-logged' => 'User logged successfully!',
+        'operation' => 'Operation successfully!',
+        'user-logged_out' => 'User logged out successfully!',
+        'product-updated' => 'Product updated successfully!',
+        'product-deleted' => 'Product deleted successfully!',
     ];
 
 ?>
