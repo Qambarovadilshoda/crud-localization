@@ -23,14 +23,12 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (NotFoundHttpException $e, Request $request) {
-            if ($request->is('api/*')) {
-                Log::info('Previous exception: ', ['exception' => $e->getPrevious()]);
-            }
             if (request()->is('api/*') && $e->getPrevious() instanceof ModelNotFoundException) {
                 $model = Str::afterLast($e->getPrevious()->getModel(), '\\');
-                return response()->json(['message' => $model . ' not found'], 404);
+                return response()->json(['message' => $model . ' ' . __('error.model.not_found')], 404);
             }
 
             return response()->json(['message' => __('error.404')], 404);
         });
+
     })->create();

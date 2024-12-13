@@ -8,5 +8,8 @@
             'forbidden' => 'Mahsulot sizniki emas',
             'not_found' => 'Mahsulot topilmadi'
         ],
-        '404' => 'Sahifa topilmadi'
+        '404' => 'Sahifa topilmadi',
+        'model' => [
+            'not_found' => 'topilmadi'
+        ]
     ];
