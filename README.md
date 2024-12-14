@@ -85,16 +85,16 @@ php artisan serve
 
 ## Usage
 
-# Authentication
+### Authentication
 
 - Register a new user or log in with existing credentials.
 - Use the authentication middleware-protected routes for product management.
 
-# Product Management
+### Product Management
 
 - Access CRUD operations via the provided API endpoints or web interface.
 
-# Error Handling
+### Error Handling
 
 - If a product is not found during a CRUD operation, the API will return a 404 response with a message like:
 
@@ -104,7 +104,7 @@ php artisan serve
 }
 ```
 
-# Monitoring with Telescope
+### Monitoring with Telescope
 
 - Access Laravel Telescope by visiting /telescope in your browser (ensure you are authorized).
 - Monitor requests, database queries, and logged errors.
