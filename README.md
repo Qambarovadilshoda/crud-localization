@@ -1,53 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Product CRUD with Authentication and Error Handling
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+- Owerview
 
-## About Laravel
+This project is a Laravel-based application that provides CRUD functionality for products and includes user authentication. The application is equipped with error handling mechanisms and integrates Laravel Telescope for monitoring.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Product CRUD
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Create, Read, Update, and Delete operations for products.Products are stored in a database with necessary validations in place.
 
-## Learning Laravel
+-  Authentication
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Secure login and registration for users.Middleware-protected routes to ensure only authenticated users can perform CRUD operations.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-  Error Handling
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Centralized error handling through a custom Handler.php class.
+Custom JSON responses for API endpoints:
+Handles ModelNotFoundException for missing products.
+Returns structured error messages for 404 and other HTTP exceptions.
 
-## Laravel Sponsors
+- Monitoring with Laravel Telescope
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Laravel Telescope is configured to monitor:
+1.Requests and responses.
+2.Logged exceptions.
+3.Database queries.
+4.User activity.
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Prerequisites
+
+- PHP >= 8.2 
+- Composer
+- Laravel 11
+- A database (e.g., MySQL, SQLite, PostgreSQL, or others)
+
+## Installation
+
+- Clone the repository:
+
+```
+git clone https://github.com/Qambarovadilshoda/crud-localization.git
+```
+
+- Navigate to the project directory:
+
+```
+cd crud-localization
+```
+
+- Install dependencies:
+
+```
+composer Install
+```
+
+- Create a .env file:
+
+```
+cp .env.example .env
+```
+
+- Configure the .env file with your database credentials and other settings:
+
+- Generate the application key:
+
+```
+php artisan key:generate
+```
+
+- Run migrations:
+
+```
+php artisan migrate
+```
+
+- Start the development server:
+
+```
+php artisan serve
+```
+
+## Usage
+
+# Authentication
+
+- Register a new user or log in with existing credentials.
+- Use the authentication middleware-protected routes for product management.
+
+# Product Management
+
+- Access CRUD operations via the provided API endpoints or web interface.
+
+# Error Handling
+
+- If a product is not found during a CRUD operation, the API will return a 404 response with a message like:
+
+```
+{
+    "message": "Product not found"
+}
+```
+
+# Monitoring with Telescope
+
+- Access Laravel Telescope by visiting /telescope in your browser (ensure you are authorized).
+- Monitor requests, database queries, and logged errors.
+
+## Dependencies
+
+- Laravel Telescope: Installed and configured for monitoring.
+
+```
+composer require laravel/telescope
+php artisan telescope:install
+php artisan migrate
+```
+- Laravel Breeze (optional): Provides authentication scaffolding.
 
 ## Contributing
 
