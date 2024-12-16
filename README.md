@@ -120,6 +120,10 @@ php artisan migrate
 ```
 - Laravel Breeze (optional): Provides authentication scaffolding.
 
+## Documentation
+
+- My project's [api documentation](https://documenter.getpostman.com/view/39432331/2sAYHwJjmJ)
+
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
